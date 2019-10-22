@@ -41,4 +41,18 @@ public class SiteDaoImpl implements SiteDao {
 		    return friend;
 		  }
 	}
+
+	/* (non-Javadoc)
+	 * @see com.mkyong.common.controller.dao.SiteDao#addFriend(com.mkyong.common.controller.model.Friend)
+	 */
+	@Override
+	public List<Friend> addFriend(Friend friend) {
+		
+		String sql = "insert into friend values(?,?,?)";
+		
+		jdbcTemplate.update(sql, new Object[] {friend.getId() ,friend.getFirstName(),friend.getLastName()});
+		
+		List<Friend> friendList = jdbcTemplate.query("select * from friend", new FriendMapper() );
+		return friendList;
+	}
 }

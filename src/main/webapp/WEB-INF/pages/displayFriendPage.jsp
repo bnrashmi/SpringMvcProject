@@ -8,9 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form id="friendPage" modelAttribute="friend" action="displayFriendPage" method="post">
+<form:form id="friendPage" modelAttribute="friend" action="addFriendPage" method="post">
 
-<table align="center">
+<table align="left" cellpadding="20%" >
+	<tr>
+		<td>
+			<form:label path="id">ID:</form:label>
+		</td>
+		<td>
+			<form:input path="id" name="id" id="id"/>
+		</td>
+	</tr>
+	
 	<tr>
 		<td>
 			<form:label path="firstName">First Name:</form:label>
@@ -29,7 +38,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<form:button id="register" name="register">Add Friend</form:button>
+			<input type="submit" value="Add Friend"/>
 		</td>
 	</tr>
 </table>

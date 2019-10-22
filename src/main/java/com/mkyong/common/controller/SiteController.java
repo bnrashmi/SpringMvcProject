@@ -1,5 +1,7 @@
 package com.mkyong.common.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +13,7 @@ import com.mkyong.common.controller.model.Friend;
 import com.mkyong.common.controller.service.SiteService;
 
 @Controller
-@RequestMapping("/site")
+@RequestMapping("/site")   //http://localhost:8080/SpringMVC/site
 public class SiteController {
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class SiteController {
 		return "sitelist";
 	}
 	
-	/*@RequestMapping(value="/displayFriendPage", method= RequestMethod.GET)
+	@RequestMapping(value="/displayFriendPage", method= RequestMethod.GET)
 	public String displayFriendPage(ModelMap model) {
 		Friend friend = new Friend();
 		
@@ -36,12 +38,16 @@ public class SiteController {
 	}
 	
 	@RequestMapping(value="/addFriendPage", method= RequestMethod.POST)
-	public String addFriendPage(@ModelAttribute Friend friend) {
+	public String addFriendPage(@ModelAttribute Friend friend, ModelMap model) {
 		
+		System.out.println("Id:" +friend.getId());
 		System.out.println("First Name:" +friend.getFirstName());
-		System.out.println("First Name:" +friend.getFirstName());
+		System.out.println("Last Name:" +friend.getLastName());
 		
-		return "displayFriendPage";
-	}*/
+		List<Friend> friendList  = siteService.addFriend(friend);
+		
+		model.addAttribute("friendList",friendList);
+		return "friendlist";
+	}
 
 }
